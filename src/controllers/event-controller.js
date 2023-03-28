@@ -1,6 +1,8 @@
 const eventService = require('../services/event-service');
 const joi = require('joi');
-
+/**
+ * @brief sirve para crear eventos
+ */
 const event = joi.object({
   event_name: joi.string().max(100).required(),
   description: joi.string().max(200).required(),
@@ -24,7 +26,11 @@ const event = joi.object({
   mail: joi.string().email().max(100).required(),
   community_name: joi.string().max(100).required(),
 });
-
+/**
+ * @brief sirve para encontrar eventos
+ * @param {*} req 
+ * @param {*} res 
+ */
 const findEvents = async (req, res) => {
   try {
     const allEvents = await eventService.findEvents();
@@ -39,7 +45,9 @@ const findEvents = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief para encontrar un evento 
+ */
 const findOneEvent = async (req, res) => {
   const {
     params: { eventId },
@@ -60,7 +68,11 @@ const findOneEvent = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief sirve para crear un nuevo evento
+ * @param {*} req 
+ * @param {*} res 
+ */
 const createNewEvent = async (req, res) => {
   const result = event.validate(req.body);
   if (result.error) {
@@ -80,7 +92,11 @@ const createNewEvent = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief sirve para actualizar eventos
+ * @param {*} req 
+ * @param {*} res 
+ */
 const updateEvent = async (req, res) => {
   const {
     body,
@@ -104,7 +120,11 @@ const updateEvent = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief sirve para eliminar un evento
+ * @param {*} req 
+ * @param {*} res 
+ */
 const deleteEvent = async (req, res) => {
   const {
     params: { eventId },

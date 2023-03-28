@@ -5,7 +5,11 @@ const login = joi.object({
   mail: joi.string().email().required(),
   password: joi.string().required(),
 });
-
+/**
+ * @brief para validar el inicio de sesión 
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getData = async (req, res) => {
   const { body } = req;
   const result = login.validate(body);

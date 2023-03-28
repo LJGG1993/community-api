@@ -5,7 +5,11 @@ const cryptr = new Cryptr(process.env.SECRET_CRYPTR);
 const userRepository = require('../repositories/user-repository');
 
 const { SECRET_KEY } = process.env;
-
+/**
+ * @brief sirve para validar el inicio de sesion 
+ * @param {*} param0 
+ * @returns 
+ */
 const createLog = async ({ mail, password }) => {
   try {
     const user = await userRepository.findUserByEmail(mail);

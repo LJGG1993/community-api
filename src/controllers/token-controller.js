@@ -4,7 +4,11 @@ const tokenService = require('../services/token-service');
 const token = joi.object({
   mail: joi.string().email().max(100).required(),
 });
-
+/**
+ * @brief sirve para comunicarte con la empresa y enviar un correo
+ * @param {*} req 
+ * @param {*} res 
+ */
 const sendTokentoMail = async (req, res) => {
   const { error } = token.validate(req.body);
   if (error) {

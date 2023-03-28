@@ -8,7 +8,9 @@ const company = joi.object({
   web: joi.string().min(3).max(50).required(),
   contact: joi.string().min(3).max(50).required(),
 });
-
+/**
+ * @brief esto es para encontrar compañias
+ */
 const findCompanies = async (req, res) => {
   try {
     const allCompanys = await companyService.findCompanies();
@@ -23,7 +25,11 @@ const findCompanies = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief esto es para encontrar una comunidad
+ * @param {*} req 
+ * @param {*} res 
+ */
 const findOneCompany = async (req, res) => {
   const {
     params: { companyId },
@@ -44,7 +50,11 @@ const findOneCompany = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief esto es para crear una compañia
+ * @param {*} req 
+ * @param {*} res 
+ */
 const createCompany = async (req, res) => {
   const result = company.validate(req.body);
   if (result.error) {
@@ -64,7 +74,11 @@ const createCompany = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief Para subir una compañia
+ * @param {*} req 
+ * @param {*} res 
+ */
 const updateCompany = async (req, res) => {
   const {
     body,
@@ -88,7 +102,11 @@ const updateCompany = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief para eliminar una compañia
+ * @param {*} req 
+ * @param {*} res 
+ */
 const deleteCompany = async (req, res) => {
   const {
     params: { companyId },

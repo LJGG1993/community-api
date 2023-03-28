@@ -1,7 +1,9 @@
 const joi = require('joi').extend(require('@joi/date'));
 
 const userService = require('../services/user-service');
-
+/**
+ * @brief sirve para registrarte en la plataforma
+ */
 const user = joi.object({
   mail: joi.string().email().max(100),
   password: joi.string().min(8).max(100),
@@ -28,7 +30,11 @@ const newPass = joi.object({
 const mailScheme = joi.object({
   mail: joi.string().email().max(100),
 });
-
+/**
+ * @brief sirve para encontrar usuarios
+ * @param {*} req 
+ * @param {*} res 
+ */
 const findUsers = async (req, res) => {
   try {
     const allUsers = await userService.findUsers();
@@ -43,7 +49,11 @@ const findUsers = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief sirve para encontar un usuario especifico
+ * @param {*} req 
+ * @param {*} res 
+ */
 const findOneUser = async (req, res) => {
   const {
     params: { userId },
@@ -64,7 +74,11 @@ const findOneUser = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief sirve para creear un usuario
+ * @param {*} req 
+ * @param {*} res 
+ */
 const createUser = async (req, res) => {
   const result = user.validate(req.body);
   if (result.error) {
@@ -84,7 +98,11 @@ const createUser = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief sirve para actualizar usuarios
+ * @param {*} req 
+ * @param {*} res 
+ */
 const updateUser = async (req, res) => {
   const {
     body,
@@ -109,7 +127,11 @@ const updateUser = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief sirve para eliminar usuarios
+ * @param {*} req 
+ * @param {*} res 
+ */
 const deleteUser = async (req, res) => {
   const {
     params: { userId },
@@ -130,7 +152,11 @@ const deleteUser = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief sirve para cambiar contraseñas
+ * @param {*} req 
+ * @param {*} res 
+ */
 const setNewPassword = async (req, res) => {
   const result = newPass.validate(req.body);
   if (result.error) {
@@ -152,7 +178,11 @@ const setNewPassword = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief sirve para encontrar un usuario por medio de correo electronico
+ * @param {*} req 
+ * @param {*} res 
+ */
 const findUserByEmail = async (req, res) => {
   const result = mailScheme.validate(req.body);
   if (result.error) {

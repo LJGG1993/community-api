@@ -5,7 +5,9 @@ const community = joi.object({
   name: joi.string().min(3).max(50).required(),
   description: joi.string().min(3).max(200).required(),
 });
-
+/**
+ * @brief esto sirve para encontrar comunidades
+ */
 const findCommunities = async (req, res) => {
   try {
     const allCommunitys = await communityService.findCommunities();
@@ -20,7 +22,9 @@ const findCommunities = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief esto sirve para encontrar una comunidad en especifico
+ */
 const findOneCommunity = async (req, res) => {
   const {
     params: { communityId },
@@ -44,7 +48,9 @@ const findOneCommunity = async (req, res) => {
     });
   }
 };
-
+/**
+ * @brief esto es para crear una comunidad
+ */
 const createCommunity = async (req, res) => {
   const result = community.validate(req.body);
   if (result.error) {
@@ -67,7 +73,11 @@ const createCommunity = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief esto es para subir una comunidad
+ * @param {*} req 
+ * @param {*} res 
+ */
 const updateCommunity = async (req, res) => {
   const {
     body,
@@ -94,7 +104,11 @@ const updateCommunity = async (req, res) => {
     }
   }
 };
-
+/**
+ * @brief esto sirve para borrar comunidades
+ * @param {*} req 
+ * @param {*} res 
+ */
 const deleteCommunity = async (req, res) => {
   const {
     params: { communityId },
