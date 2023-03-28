@@ -1,3 +1,6 @@
+/**
+ * @brief const es para asignar la coneccion con la db.
+ */
 const connect = require('../connection/dbconnection');
 
 const findCommunities = async () => {
@@ -9,14 +12,18 @@ const findCommunities = async () => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const findOneCommunity es para encontrar una communidad que el usuario busque buscando.
+ * @param {*} communityId 
+ * @returns 
+ */
 const findOneCommunity = async (communityId) => {
   try {
     const connection = await connect();
     const [data] = await connection.query(
       'SELECT * FROM community WHERE community = ?',
       [communityId]
-    );
+     );
     if (data.length === 0) {
       throw {
         status: 400,
@@ -28,7 +35,11 @@ const findOneCommunity = async (communityId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const createNewCommunity es para que el usuario pueda insertar una comunidad nueva (backend).
+ * @param {*} newCommunity 
+ * @returns 
+ */
 const createNewCommunity = async (newCommunity) => {
   try {
     const connection = await connect();
@@ -40,7 +51,12 @@ const createNewCommunity = async (newCommunity) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const updateCommunity se usa para poner mas informacion de una communidad.
+ * @param {*} objectCommunity 
+ * @param {*} communityId 
+ * @returns 
+ */
 const updateCommunity = async (objectCommunity, communityId) => {
   try {
     await findOneCommunity(communityId);
@@ -54,7 +70,10 @@ const updateCommunity = async (objectCommunity, communityId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const deleteCommunity es para eliminar una communidad o datos de ella.
+ * @param {*} communityId 
+ */
 const deleteCommunity = async (communityId) => {
   try {
     const connection = await connect();

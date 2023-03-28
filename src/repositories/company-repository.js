@@ -1,5 +1,11 @@
+/**
+ * @brief const connect es para crear la coneccion con la db (backend).
+ */
 const connect = require('../connection/dbconnection');
-
+/**
+ * @brief const findCompanies es para encontrar alguna compañia que el usuario necesite.
+ * @returns 
+ */
 const findCompanies = async () => {
   try {
     const connection = await connect();
@@ -9,7 +15,11 @@ const findCompanies = async () => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const findOneCompany es para encontrar una compañia que el usuario busque.
+ * @param {*} companyId 
+ * @returns 
+ */
 const findOneCompany = async (companyId) => {
   try {
     const connection = await connect();
@@ -28,7 +38,11 @@ const findOneCompany = async (companyId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const createNewCompany es para crear una nueva compañia.
+ * @param {*} newCompany 
+ * @returns 
+ */
 const createNewCompany = async (newCompany) => {
   try {
     const connection = await connect();
@@ -46,7 +60,12 @@ const createNewCompany = async (newCompany) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const updateCompany es para actualizar algun dato de la compañia.
+ * @param {*} objectCompany 
+ * @param {*} companyId 
+ * @returns 
+ */
 const updateCompany = async (objectCompany, companyId) => {
   try {
     await findOneCompany(companyId);
@@ -60,7 +79,10 @@ const updateCompany = async (objectCompany, companyId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief deleteCompany es para eliminar alguna compañia propia que el usuario desee.
+ * @param {*} companyId 
+ */
 const deleteCompany = async (companyId) => {
   try {
     const connection = await connect();

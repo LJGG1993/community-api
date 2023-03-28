@@ -1,3 +1,6 @@
+/**
+ * @brief este grupo de variables const son para mandar llamar otros archivos a esta ruta.
+ */
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -14,13 +17,19 @@ const login = require('../routes/login-routes');
 const token = require('../routes/token-routes');
 
 const verifyToken = require('../routes/validate-token');
-
+/**
+ * @brief function middlewares es para intercambiar informacion entre aplicaciones.
+ * @param {*} app 
+ */
 function middleWares(app) {
   app.use(express.json());
   app.use(morgan('dev'));
   app.use(cors());
 }
-
+/**
+ * brief function assingroutes es para asignar rutas a las categorias.
+ * @param {*} app 
+ */
 function assingRoutes(app) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   app.use('', login);
@@ -30,7 +39,9 @@ function assingRoutes(app) {
   app.use('', verifyToken, company);
   app.use('', verifyToken, community);
 }
-
+/**
+ * @brief function main es para asignar las apps.
+ */
 function main() {
   const app = express();
   middleWares(app);

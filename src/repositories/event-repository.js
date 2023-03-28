@@ -1,5 +1,11 @@
+/**
+ * @brief const connect es para crear la coneccion con la db.
+ */
 const connect = require('../connection/dbconnection');
-
+/**
+ * @brief async function findEvents es para encontrar eventos.
+ * @returns 
+ */
 async function findEvents() {
   try {
     const connection = await connect();
@@ -9,7 +15,11 @@ async function findEvents() {
     throw { status: 500, message: error };
   }
 }
-
+/**
+ * @brief const findOneEvent es para encontrar un evento en especifico.
+ * @param {*} eventId 
+ * @returns 
+ */
 const findOneEvent = async (eventId) => {
   try {
     const connection = await connect();
@@ -27,7 +37,11 @@ const findOneEvent = async (eventId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @const createNewEvent es para crear un nuevo evento.
+ * @param {*} newEvent 
+ * @returns 
+ */
 const createNewEvent = async (newEvent) => {
   try {
     const connection = await connect();
@@ -55,7 +69,12 @@ const createNewEvent = async (newEvent) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const updateEvent es para actualizar algun dato del evento.
+ * @param {*} objectEvent 
+ * @param {*} eventId 
+ * @returns 
+ */
 const updateEvent = async (objectEvent, eventId) => {
   try {
     await findOneEvent(eventId);
@@ -85,7 +104,10 @@ const updateEvent = async (objectEvent, eventId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief es para eliminar un evento.
+ * @param {*} eventId 
+ */
 const deleteEvent = async (eventId) => {
   try {
     const connection = await connect();
