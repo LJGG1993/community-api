@@ -1,5 +1,12 @@
+/**
+ * @brief  Da acceso a la ruta
+ * @returns 
+ */
 const jwt = require('jsonwebtoken');
-
+/**
+ * @brief Valida las rutas protegidas
+ * @returns 
+ */
 // middleware to validate token (rutas protegidas)
 const verifyToken = (req, res, next) => {
   if (
@@ -11,9 +18,17 @@ const verifyToken = (req, res, next) => {
   ) {
     next();
   } else {
+    /**
+ * @brief No da acceso si hay errores
+ * @returns 
+ */
     const token = req.header('auth-token');
     if (!token) return res.status(401).json({ msg: 'Acceso denegado' });
     try {
+      /**
+ * @brief Veriifica que el token sea correcto
+ * @returns 
+ */
       const verified = jwt.verify(token, process.env.SECRET_KEY);
       req.user = verified;
       next();
