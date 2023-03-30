@@ -1,5 +1,13 @@
+/**
+ * @brief const connect es para crear la coneccion con la db.
+ */
 const connect = require('../connection/dbconnection');
-
+/**
+ * @brief const create es para crear un token a el usuario.
+ * @param {*} id 
+ * @param {*} uuid 
+ * @returns 
+ */
 const createToken = async (id, uuid) => {
   try {
     const connection = await connect();
@@ -11,7 +19,11 @@ const createToken = async (id, uuid) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const findToken es para buscar un token de usuario o a un usuario por token.
+ * @param {*} uuid 
+ * @returns 
+ */
 const findToken = async (uuid) => {
   try {
     const connection = await connect();

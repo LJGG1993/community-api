@@ -1,8 +1,14 @@
+/**
+ * @brief const Cryptr es para crear conexion con otro archivo o mandarlo llamar
+ */
 const Cryptr = require('cryptr');
 
 const cryptr = new Cryptr(process.env.SECRET_CRYPTR);
 const connect = require('../connection/dbconnection');
-
+/**
+ * @brief async function findUsers es para buscar usuarios.
+ * @returns 
+ */
 async function findUsers() {
   try {
     const connection = await connect();
@@ -12,7 +18,11 @@ async function findUsers() {
     throw { status: 500, message: error };
   }
 }
-
+/**
+ * @brief const findOneUser es para buscar a un usuario en especifico.
+ * @param {*} userId 
+ * @returns 
+ */
 const findOneUser = async (userId) => {
   try {
     const connection = await connect();
@@ -30,7 +40,11 @@ const findOneUser = async (userId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const createNewUser es para crear un usuario nuevo.
+ * @param {*} newUser 
+ * @returns 
+ */
 const createNewUser = async (newUser) => {
   try {
     const connection = await connect();
@@ -58,7 +72,12 @@ const createNewUser = async (newUser) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief updateUser es para actualizar la informacion de un usuario.
+ * @param {*} objectUser 
+ * @param {*} userId 
+ * @returns 
+ */
 const updateUser = async (objectUser, userId) => {
   try {
     await findOneUser(userId);
@@ -87,7 +106,10 @@ const updateUser = async (objectUser, userId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const deleteUser es para eliminar un usuario.
+ * @param {*} userId 
+ */
 const deleteUser = async (userId) => {
   try {
     const connection = await connect();
@@ -104,7 +126,11 @@ const deleteUser = async (userId) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const findUserByEmail es para encontrar un usuario usando el correo.
+ * @param {*} mail 
+ * @returns 
+ */
 const findUserByEmail = async (mail) => {
   try {
     const connection = await connect();
@@ -123,7 +149,12 @@ const findUserByEmail = async (mail) => {
     throw { status: 500, message: error };
   }
 };
-
+/**
+ * @brief const setPassword es para establecer una contraseña.
+ * @param {*} userid 
+ * @param {*} password 
+ * @returns 
+ */
 const setPassword = async (userid, password) => {
   try {
     const connection = await connect();
